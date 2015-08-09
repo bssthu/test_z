@@ -58,7 +58,7 @@ namespace eso_zh_server
                     rawText = newRawText;
                     UpdateText(rawText);
                     String translated = Translator.Translate(rawText, String.Copy(AppKey));
-                    UpdateText(String.Format("{0}\r\n\r\n\r\n{1}", rawText, translated));
+                    UpdateText(String.Format("{0}\r\n\r\n\r\n{1}", rawText, translated.Replace("\n", "\r\n")));
                 }
             }
         }

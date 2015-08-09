@@ -49,6 +49,7 @@
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ReadOnly = true;
+            this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxInfo.Size = new System.Drawing.Size(283, 195);
             this.textBoxInfo.TabIndex = 0;
             // 
