@@ -8,7 +8,11 @@ namespace eso_zh_server
 {
     class Worker
     {
+        public delegate void UpdateTextDelegate(String text);
+        public event UpdateTextDelegate UpdateText;
+
         FormConfig frm;
+        String rawText;
 
         public Worker(FormConfig frm)
         {
@@ -27,7 +31,14 @@ namespace eso_zh_server
                 {
                     return;
                 }
-                // do work
+                // capture & decode
+                String newRawText = QrDecoder.MultiDecode(ScreenCapturer.Capture());
+                if (rawText != newRawText && UpdateText != null)
+                {
+                    rawText = newRawText;
+                    UpdateText(newRawText);
+                }
+                // TODO: translate
             }
         }
     }
