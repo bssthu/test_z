@@ -1,0 +1,8 @@
+*.suo
+eso_zh_server/bin/
+eso_zh_server/obj/
+
+Thumbs.db
+.DS_Store
+*~
+*.swp
