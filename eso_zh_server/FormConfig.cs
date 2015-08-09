@@ -26,6 +26,8 @@ namespace eso_zh_server
             };
             workerThread = new Thread(worker.Run);
             workerThread.Start();
+            // load settings
+            textBoxAppKey.Text = Properties.Settings.Default.appKey;
         }
 
         public void UpdateText(String text)
@@ -35,6 +37,9 @@ namespace eso_zh_server
 
         protected override void OnClosing(CancelEventArgs e)
         {
+            // save settings
+            Properties.Settings.Default.appKey = textBoxAppKey.Text;
+            Properties.Settings.Default.Save();
             // kill worker thread
             if (workerThread != null)
             {
@@ -46,6 +51,14 @@ namespace eso_zh_server
             }
 
             base.OnClosing(e);
+        }
+
+        private void textBoxAppKey_TextChanged(object sender, EventArgs e)
+        {
+            if (worker != null)
+            {
+                worker.AppKey = textBoxAppKey.Text;
+            }
         }
     }
 }

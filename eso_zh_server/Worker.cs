@@ -11,6 +11,25 @@ namespace eso_zh_server
         public delegate void UpdateTextDelegate(String text);
         public event UpdateTextDelegate UpdateText;
 
+        public String AppKey
+        {
+            get
+            {
+                lock (_AppKey)
+                {
+                    return _AppKey;
+                }
+            }
+            set
+            {
+                lock (_AppKey)
+                {
+                    _AppKey = value;
+                }
+            }
+        }
+        private String _AppKey = "";
+
         FormConfig frm;
         String rawText;
 
@@ -33,12 +52,13 @@ namespace eso_zh_server
                 }
                 // capture & decode
                 String newRawText = QrDecoder.MultiDecode(ScreenCapturer.Capture());
-                if (rawText != newRawText && UpdateText != null)
+                // translate & display
+                if (newRawText != null && rawText != newRawText && UpdateText != null)
                 {
                     rawText = newRawText;
-                    UpdateText(newRawText);
+                    String translated = Translator.Translate(rawText, String.Copy(AppKey));
+                    UpdateText(String.Format("{0}\r\n\r\n\r\n{1}", rawText, translated));
                 }
-                // TODO: translate
             }
         }
     }
