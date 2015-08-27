@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConfig));
             this.notifyIconConfig = new System.Windows.Forms.NotifyIcon(this.components);
             this.textBoxInfo = new System.Windows.Forms.TextBox();
             this.labelAppKey = new System.Windows.Forms.Label();
@@ -131,6 +132,7 @@
             this.Controls.Add(this.labelPort);
             this.Controls.Add(this.labelAppKey);
             this.Controls.Add(this.textBoxInfo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConfig";
             this.Text = "esozh - 设置";
             this.ResumeLayout(false);
