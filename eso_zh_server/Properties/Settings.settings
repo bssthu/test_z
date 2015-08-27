@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="appKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">trnsl.1.1.20150827T155316Z.5d2df7ac4748b73a.06bdb80394e47e10a50aaf1ad82f737a98702265</Value>
     </Setting>
   </Settings>
 </SettingsFile>

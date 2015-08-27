@@ -25,7 +25,8 @@ namespace eso_zh_server.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("trnsl.1.1.20150827T155316Z.5d2df7ac4748b73a.06bdb80394e47e10a50aaf1ad82f737a98702" +
+            "265")]
         public string appKey {
             get {
                 return ((string)(this["appKey"]));

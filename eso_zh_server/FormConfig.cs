@@ -76,5 +76,10 @@ namespace eso_zh_server
             UpdateChecker checker = new UpdateChecker();
             checker.checkUpdate();
         }
+
+        private void buttonDefaultKey_Click(object sender, EventArgs e)
+        {
+            textBoxAppKey.Text = "trnsl.1.1.20150827T155316Z.5d2df7ac4748b73a.06bdb80394e47e10a50aaf1ad82f737a98702265";
+        }
     }
 }
