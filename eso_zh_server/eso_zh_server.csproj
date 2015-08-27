@@ -63,6 +63,7 @@
     <Compile Include="QrDecoder.cs" />
     <Compile Include="ScreenCapturer.cs" />
     <Compile Include="Translator.cs" />
+    <Compile Include="UpdateChecker.cs" />
     <Compile Include="WebHelper.cs" />
     <Compile Include="Worker.cs" />
     <EmbeddedResource Include="FormConfig.resx">

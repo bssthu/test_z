@@ -19,6 +19,7 @@ namespace eso_zh_server
         public FormConfig()
         {
             InitializeComponent();
+            this.Text = String.Format("esozh - v{0}", System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString());
             // init worker thread
             worker = new Worker(this);
             worker.UpdateText += delegate(String text)
@@ -67,6 +68,13 @@ namespace eso_zh_server
             {
                 worker.AppKey = textBoxAppKey.Text;
             }
+        }
+
+        private void buttonCheckUpdate_Click(object sender, EventArgs e)
+        {
+            buttonCheckUpdate.Enabled = false;
+            UpdateChecker checker = new UpdateChecker();
+            checker.checkUpdate();
         }
     }
 }

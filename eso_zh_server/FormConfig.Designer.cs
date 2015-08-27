@@ -35,6 +35,7 @@
             this.textBoxAppKey = new System.Windows.Forms.TextBox();
             this.labelPort = new System.Windows.Forms.Label();
             this.textBoxPort = new System.Windows.Forms.TextBox();
+            this.buttonCheckUpdate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // notifyIconConfig
@@ -90,16 +91,28 @@
             this.textBoxPort.Location = new System.Drawing.Point(59, 40);
             this.textBoxPort.Name = "textBoxPort";
             this.textBoxPort.ReadOnly = true;
-            this.textBoxPort.Size = new System.Drawing.Size(236, 21);
+            this.textBoxPort.Size = new System.Drawing.Size(122, 21);
             this.textBoxPort.TabIndex = 2;
             this.textBoxPort.Text = "无效";
             this.textBoxPort.TextChanged += new System.EventHandler(this.textBoxAppKey_TextChanged);
+            // 
+            // buttonCheckUpdate
+            // 
+            this.buttonCheckUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCheckUpdate.Location = new System.Drawing.Point(187, 38);
+            this.buttonCheckUpdate.Name = "buttonCheckUpdate";
+            this.buttonCheckUpdate.Size = new System.Drawing.Size(108, 23);
+            this.buttonCheckUpdate.TabIndex = 3;
+            this.buttonCheckUpdate.Text = "检查更新(&U)";
+            this.buttonCheckUpdate.UseVisualStyleBackColor = true;
+            this.buttonCheckUpdate.Click += new System.EventHandler(this.buttonCheckUpdate_Click);
             // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(307, 335);
+            this.Controls.Add(this.buttonCheckUpdate);
             this.Controls.Add(this.textBoxPort);
             this.Controls.Add(this.textBoxAppKey);
             this.Controls.Add(this.labelPort);
@@ -120,6 +133,7 @@
         private System.Windows.Forms.TextBox textBoxAppKey;
         private System.Windows.Forms.Label labelPort;
         private System.Windows.Forms.TextBox textBoxPort;
+        private System.Windows.Forms.Button buttonCheckUpdate;
     }
 }
 
