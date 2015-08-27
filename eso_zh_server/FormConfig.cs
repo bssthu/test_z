@@ -13,6 +13,7 @@ namespace eso_zh_server
     public partial class FormConfig : Form
     {
         private Worker worker;
+        private WebHelper webHelper;
         private Thread workerThread;
 
         public FormConfig()
@@ -24,6 +25,12 @@ namespace eso_zh_server
             {
                 this.BeginInvoke((Worker.UpdateTextDelegate)UpdateText, text);
             };
+            webHelper = new WebHelper();
+            if (webHelper.Port > 0)
+            {
+                webHelper.Run();
+                textBoxPort.Text = webHelper.Port.ToString();
+            }
             workerThread = new Thread(worker.Run);
             workerThread.Start();
             // load settings
@@ -33,6 +40,7 @@ namespace eso_zh_server
         public void UpdateText(String text)
         {
             textBoxInfo.Text = text;
+            webHelper.Text = text;
         }
 
         protected override void OnClosing(CancelEventArgs e)

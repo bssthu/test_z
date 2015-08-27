@@ -33,6 +33,8 @@
             this.textBoxInfo = new System.Windows.Forms.TextBox();
             this.labelAppKey = new System.Windows.Forms.Label();
             this.textBoxAppKey = new System.Windows.Forms.TextBox();
+            this.labelPort = new System.Windows.Forms.Label();
+            this.textBoxPort = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // notifyIconConfig
@@ -45,12 +47,12 @@
             this.textBoxInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxInfo.Location = new System.Drawing.Point(12, 128);
+            this.textBoxInfo.Location = new System.Drawing.Point(12, 67);
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ReadOnly = true;
             this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInfo.Size = new System.Drawing.Size(283, 195);
+            this.textBoxInfo.Size = new System.Drawing.Size(283, 256);
             this.textBoxInfo.TabIndex = 0;
             // 
             // labelAppKey
@@ -72,12 +74,35 @@
             this.textBoxAppKey.TabIndex = 2;
             this.textBoxAppKey.TextChanged += new System.EventHandler(this.textBoxAppKey_TextChanged);
             // 
+            // labelPort
+            // 
+            this.labelPort.AutoSize = true;
+            this.labelPort.Location = new System.Drawing.Point(12, 43);
+            this.labelPort.Name = "labelPort";
+            this.labelPort.Size = new System.Drawing.Size(29, 12);
+            this.labelPort.TabIndex = 1;
+            this.labelPort.Text = "端口";
+            // 
+            // textBoxPort
+            // 
+            this.textBoxPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPort.Location = new System.Drawing.Point(59, 40);
+            this.textBoxPort.Name = "textBoxPort";
+            this.textBoxPort.ReadOnly = true;
+            this.textBoxPort.Size = new System.Drawing.Size(236, 21);
+            this.textBoxPort.TabIndex = 2;
+            this.textBoxPort.Text = "无效";
+            this.textBoxPort.TextChanged += new System.EventHandler(this.textBoxAppKey_TextChanged);
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(307, 335);
+            this.Controls.Add(this.textBoxPort);
             this.Controls.Add(this.textBoxAppKey);
+            this.Controls.Add(this.labelPort);
             this.Controls.Add(this.labelAppKey);
             this.Controls.Add(this.textBoxInfo);
             this.Name = "FormConfig";
@@ -93,6 +118,8 @@
         private System.Windows.Forms.TextBox textBoxInfo;
         private System.Windows.Forms.Label labelAppKey;
         private System.Windows.Forms.TextBox textBoxAppKey;
+        private System.Windows.Forms.Label labelPort;
+        private System.Windows.Forms.TextBox textBoxPort;
     }
 }
 
