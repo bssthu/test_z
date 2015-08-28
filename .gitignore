@@ -1,6 +1,7 @@
 *.suo
 eso_zh_server/bin/
 eso_zh_server/obj/
+noun.txt
 
 Thumbs.db
 .DS_Store

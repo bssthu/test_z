@@ -137,7 +137,7 @@ namespace eso_zh_server
             {
                 try
                 {
-                    text.Replace(item.Key, item.Value);
+                    text = text.Replace(item.Key, item.Value);
                 }
                 catch (Exception ex)
                 {
