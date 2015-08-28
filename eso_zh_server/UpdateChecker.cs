@@ -49,7 +49,12 @@ namespace eso_zh_server
             }
             catch (Exception ex)
             {
-                if (MessageBox.Show(ex.Message + "是否手动检查？", "检查更新失败", MessageBoxButtons.YesNo)
+                String msg = ex.Message;
+                if (msg.Length > 2000)
+                {
+                    msg = msg.Substring(0, 2000) + "……";
+                }
+                if (MessageBox.Show(msg + "\r\n\r\n是否手动检查？", "检查更新失败", MessageBoxButtons.YesNo)
                         == DialogResult.Yes)
                 {
                     System.Diagnostics.Process.Start(releasePageUrl);

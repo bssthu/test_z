@@ -86,7 +86,7 @@ namespace eso_zh_server
             return GetTextFromJson(responseFromServer);
         }
 
-        private static String GetStringFromResponse(HttpWebResponse response)
+        private String GetStringFromResponse(HttpWebResponse response)
         {
             Stream receiveStream = response.GetResponseStream();
             StreamReader readStream = new StreamReader(receiveStream);
@@ -97,22 +97,25 @@ namespace eso_zh_server
             return responseFromServer;
         }
 
-        private static String GetTextFromJson(String jsonString)
+        private String GetTextFromJson(String jsonString)
         {
-            dynamic json = Json.Decode(jsonString);
-            String str = null;
             try
             {
-                str = json.text[0].ToString();
+                dynamic json = Json.Decode(jsonString);
+                return json.text[0].ToString();
+            }
+            catch (FieldAccessException ex)
+            {
+                return ex.Message + "\n\n解析 JSON 时出错。";
             }
             catch (Exception ex)
             {
                 Trace.WriteLine(ex.Message);
             }
-            return str;
+            return null;
         }
 
-        private static String GetMessageFromJson(String jsonString)
+        private String GetMessageFromJson(String jsonString)
         {
             dynamic json = Json.Decode(jsonString);
             String str = null;
@@ -142,13 +145,6 @@ namespace eso_zh_server
                 }
             }
             return text;
-        }
-
-        public static String Utf8ToUnicode(String utf8String)
-        {
-            byte[] utf8Bytes = Encoding.UTF8.GetBytes(utf8String);
-            byte[] unicodeBytes = Encoding.Convert(Encoding.UTF8, Encoding.Unicode, utf8Bytes);
-            return Encoding.Unicode.GetString(unicodeBytes);
         }
     }
 }
