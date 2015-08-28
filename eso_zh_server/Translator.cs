@@ -32,14 +32,15 @@ namespace eso_zh_server
             String fullText = reader.ReadToEnd();
             reader.Close();
             String[] lines = fullText.Split( new[] { '\n', '\r' } );
-            foreach (String line in lines)
+            foreach (String str in lines)
             {
                 try
                 {
-                    if (line.Trim() != "")
+                    String line = str.Trim();
+                    if (line != "" && !line.StartsWith("#"))
                     {
                         String[] words = line.Split(new[] { '|' }, 2);
-                        if (words.Length == 2)
+                        if (words.Length == 2 && !nouns.ContainsKey(words[0].Trim()))
                         {
                             nouns[words[0].Trim()] = words[1].Trim();
                         }
