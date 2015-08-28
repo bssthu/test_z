@@ -12,8 +12,49 @@ namespace eso_zh_server
 {
     class Translator
     {
-        public static String Translate(String text, String appKey, String lang = "en-zh")
+        private Dictionary<String, String> nouns = new Dictionary<String, String>();
+        public Translator()
         {
+            try
+            {
+                LoadNoun();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message);
+            }
+        }
+
+        private void LoadNoun()
+        {
+            String fileName = "noun.txt";
+            StreamReader reader = new StreamReader(fileName);
+            String fullText = reader.ReadToEnd();
+            reader.Close();
+            String[] lines = fullText.Split( new[] { '\n', '\r' } );
+            foreach (String line in lines)
+            {
+                try
+                {
+                    if (line.Trim() != "")
+                    {
+                        String[] words = line.Split(new[] { '|' }, 2);
+                        if (words.Length == 2)
+                        {
+                            nouns[words[0].Trim()] = words[1].Trim();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        public String Translate(String text, String appKey, String lang = "en-zh")
+        {
+            text = ReplaceNoun(text);
             String url = String.Format("https://translate.yandex.net/api/v1.5/tr.json/translate?lang={0}&key={1}&text={2}",
                     lang, appKey, Uri.EscapeDataString(text));
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -84,6 +125,30 @@ namespace eso_zh_server
                 Trace.WriteLine(ex.Message);
             }
             return str;
+        }
+
+        // 使用名词列表中的词的翻译
+        private String ReplaceNoun(String text)
+        {
+            foreach (var item in nouns)
+            {
+                try
+                {
+                    text.Replace(item.Key, item.Value);
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine(ex.Message);
+                }
+            }
+            return text;
+        }
+
+        public static String Utf8ToUnicode(String utf8String)
+        {
+            byte[] utf8Bytes = Encoding.UTF8.GetBytes(utf8String);
+            byte[] unicodeBytes = Encoding.Convert(Encoding.UTF8, Encoding.Unicode, utf8Bytes);
+            return Encoding.Unicode.GetString(unicodeBytes);
         }
     }
 }
