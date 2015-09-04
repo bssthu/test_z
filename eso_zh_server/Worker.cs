@@ -62,7 +62,15 @@ namespace eso_zh_server
                     {
                         rawText = newRawText;
                         UpdateText(rawText);
-                        String translated = translator.Translate(rawText, String.Copy(AppKey));
+                        String translated;
+                        try
+                        {
+                            translated = translator.Translate(rawText, String.Copy(AppKey));
+                        }
+                        catch (Exception ex)
+                        {
+                            translated = String.Format("翻译时出错：\r\n{0}", ex.Message);
+                        }
                         UpdateText(String.Format("{0}\r\n\r\n\r\n{1}", rawText, translated.Replace("\n", "\r\n")));
                     }
                 }

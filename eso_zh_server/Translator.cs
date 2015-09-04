@@ -72,18 +72,21 @@ namespace eso_zh_server
             catch (WebException we)
             {
                 response = (HttpWebResponse)we.Response;
-                String message = GetMessageFromJson(GetStringFromResponse(response));
-                return String.Format("翻译时出错：\r\n{0} {1}, {2}",
-                        (int)response.StatusCode, response.StatusCode, message);
+                if (response == null)
+                {
+                    return "翻译时出错，服务器没有响应，请检查网络连接";
+                }
+                else
+                {
+                    String message = GetMessageFromJson(GetStringFromResponse(response));
+                    return String.Format("翻译时出错：\r\n{0} {1}, {2}",
+                            (int)response.StatusCode, response.StatusCode, message);
+                }
             }
-            catch (Exception ex)
-            {
-                return String.Format("翻译时出错：\r\n{0}", ex.Message);
-            }
-            
-            string responseFromServer = GetStringFromResponse(response);
-            response.Close();
 
+            string responseFromServer = GetStringFromResponse(response);
+            
+            response.Close();
             return GetTextFromJson(responseFromServer);
         }
 
