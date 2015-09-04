@@ -110,13 +110,13 @@ namespace eso_zh_server
             }
             catch (FieldAccessException ex)
             {
-                return ex.Message + "\n\n解析 JSON 时出错。";
+                return String.Format("解析 JSON 时出错：\n{0}", ex.Message);
             }
             catch (Exception ex)
             {
                 Trace.WriteLine(ex.Message);
+                return String.Format("解析 JSON 时出错：\n{0}", ex.Message);
             }
-            return null;
         }
 
         private String GetMessageFromJson(String jsonString)
