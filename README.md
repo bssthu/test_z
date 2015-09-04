@@ -17,7 +17,7 @@ Chinese translation for Elder Scrolls Online
 ## 配置方法
 
 双击运行即可使用基本功能。
-需要将 zxing.dll 与 eso_zh_server.exe 放在同一路径下。
+需要将 zxing.dll, System.Web.Helpers.dll 与 eso_zh_server.exe 放在同一路径下。
 
 
 #### 网页版配置
