@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -44,6 +43,7 @@ namespace eso_zh_server
 
         public void Run()
         {
+            int gc_count = 0;
             while (true)
             {
                 try
@@ -56,10 +56,13 @@ namespace eso_zh_server
                 }
                 try
                 {
+                    if (++gc_count > 10)    // sometimes automatic garbage collection does not work
+                    {
+                        GC.Collect();
+                        gc_count = 0;
+                    }
                     // capture & decode
-                    Bitmap bitmap = ScreenCapturer.Capture();
-                    String newRawText = QrDecoder.MultiDecode(bitmap);
-                    bitmap.Dispose();
+                    String newRawText = QrDecoder.MultiDecode(ScreenCapturer.Capture());
                     // translate & display
                     if (newRawText != null && rawText != newRawText && UpdateText != null)
                     {
