@@ -17,17 +17,17 @@ namespace eso_zh_server
         {
             try
             {
-                LoadNoun();
+                LoadNoun("noun.txt");
+                LoadNoun("noun_local.txt");
             }
-            catch (Exception ex)
+            catch (Exception ex)    // it's ok
             {
                 Trace.WriteLine(ex.Message);
             }
         }
 
-        private void LoadNoun()
+        private void LoadNoun(String fileName)
         {
-            String fileName = "noun.txt";
             StreamReader reader = new StreamReader(fileName);
             String fullText = reader.ReadToEnd();
             reader.Close();
