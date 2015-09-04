@@ -68,7 +68,7 @@ namespace eso_zh_server
                 }
                 catch (System.IO.FileNotFoundException ex)
                 {
-                    UpdateText(String.Format("{0}\r\n\r\n找不到 zxing.dll, 请检查或重新下载软件。", ex.Message));
+                    UpdateText(String.Format("{0}\r\n\r\n找不到某些 dll 文件, 请检查或重新下载软件。", ex.Message));
                     return;
                 }
                 catch (Exception ex)

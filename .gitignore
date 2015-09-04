@@ -1,4 +1,5 @@
 *.suo
+.vs/
 eso_zh_server/bin/
 eso_zh_server/obj/
 noun.txt
