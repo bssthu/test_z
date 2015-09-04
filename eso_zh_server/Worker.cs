@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -62,7 +63,7 @@ namespace eso_zh_server
                         gc_count = 0;
                     }
                     // capture & decode
-                    String newRawText = QrDecoder.MultiDecode(ScreenCapturer.Capture());
+                    String newRawText = getTextFromScreenQrCode();
                     // translate & display
                     if (newRawText != null && rawText != newRawText && UpdateText != null)
                     {
@@ -91,6 +92,29 @@ namespace eso_zh_server
                     //return;
                 }
             }
+        }
+
+        private String getTextFromScreenQrCode()
+        {
+            Bitmap capture = ScreenCapturer.Capture();
+            String newRawText = QrDecoder.MultiDecode(capture);
+            if (newRawText != null)
+            {
+                return newRawText;
+            }
+
+            // scale image if no qr code
+            double[] factors = { 0.9, 0.8, 0.6 };
+            foreach (double factor in factors)
+            {
+                newRawText = QrDecoder.MultiDecode(capture.Zoom(factor));
+                if (newRawText != null)
+                {
+                    return newRawText;
+                }
+            }
+
+            return null;
         }
     }
 }
