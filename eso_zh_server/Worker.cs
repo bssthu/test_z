@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -56,7 +57,9 @@ namespace eso_zh_server
                 try
                 {
                     // capture & decode
-                    String newRawText = QrDecoder.MultiDecode(ScreenCapturer.Capture());
+                    Bitmap bitmap = ScreenCapturer.Capture();
+                    String newRawText = QrDecoder.MultiDecode(bitmap);
+                    bitmap.Dispose();
                     // translate & display
                     if (newRawText != null && rawText != newRawText && UpdateText != null)
                     {
@@ -81,8 +84,8 @@ namespace eso_zh_server
                 }
                 catch (Exception ex)
                 {
-                    UpdateText(ex.Message);
-                    return;
+                    UpdateText(String.Format("Worker.Run 中发生异常:\r\n{0}", ex.Message));
+                    //return;
                 }
             }
         }

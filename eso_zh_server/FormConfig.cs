@@ -40,6 +40,10 @@ namespace eso_zh_server
 
         public void UpdateText(String text)
         {
+            if (text == null)
+            {
+                text = "";
+            }
             textBoxInfo.Text = text;
             webHelper.Text = text;
         }
